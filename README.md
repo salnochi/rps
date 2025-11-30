@@ -7,10 +7,11 @@ It was designed to provide a random data set to be used with other projects.
 RPS was written in C to be able to complie for cross platform.
 
 Main files:
-There are two executible files in the main folder, they were compiled using GCC. Written for a Debian based linux machine, not tested on any other OS.
+There are three executible files in the main folder, they were compiled using GCC. Written for a Debian based linux machine, not tested on any other OS.
 - rps_cli = executible file for the linux command line interface
+- rps_cli-01 = executible file for the linux command line interface with ncurses GUI
 - rps_gui = executible file for the graphical user interface using GTK3 
-
+  
 Source:
 There are two source files in the "src" folder.
 - rps_cli.c = source file for use in a linux based command line interface
