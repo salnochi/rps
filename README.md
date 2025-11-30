@@ -14,11 +14,14 @@ There are two executible files in the main folder, they were compiled using GCC.
 Source:
 There are two source files in the "src" folder.
 - rps_cli.c = source file for use in a linux based command line interface
-- rps_cli-01.c = source file for use in a linux based command line interface with basic GUI with ncurses 
-- rps_gui.c = source file for a graphical user interface in linux using GTK
+    - compile with: $ gss rps_cli.c 
+- rps_cli-01.c = source file for use in a linux based command line interface with basic GUI with ncurses
+    - compile with: $ gcc rps_cli-01.c -lncurses 
+- rps_gui.c = source file for a graphical user interface in linux using GTK3
+    - compile with: $ gcc rps_gui.c -o main `pkg-config --cflags --libs gtk+-3.0`
 
 Logging:
 CSV logs are placed in the "logs" folder to provide a single point for references when parsing the data is needed. 
 Two csv files are located in the logs folder that complement the version of the program that uses it.
-- rps.csv = used by the command line interface version
+- rps.csv = used by both of the the command line interface versions
 - rps_gui.csv = used by the graphical used interface version
