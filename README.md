@@ -12,7 +12,7 @@ There are three executible files in the main folder, they were compiled using GC
 - rps_cli-01 = executible file for the linux command line interface with ncurses GUI
 - rps_gui = executible file for the graphical user interface using GTK3 
   
-Source:
+<b>Source:</b>
 There are three source files in the "src" folder.
 - rps_cli.c = source file for use in a linux based command line interface
     - compile with: $ gss rps_cli.c
