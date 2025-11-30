@@ -13,7 +13,8 @@ There are two executible files in the main folder, they were compiled using GCC.
 
 Source:
 There are two source files in the "src" folder.
-- rps_cli.c = source file for use in a linux based command line interface 
+- rps_cli.c = source file for use in a linux based command line interface
+- rps_cli-01.c = source file for use in a linux based command line interface with basic GUI with ncurses 
 - rps_gui.c = source file for a graphical user interface in linux using GTK
 
 Logging:
