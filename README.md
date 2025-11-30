@@ -15,9 +15,11 @@ There are three executible files in the main folder, they were compiled using GC
 Source:
 There are three source files in the "src" folder.
 - rps_cli.c = source file for use in a linux based command line interface
-    - compile with: $ gss rps_cli.c 
+    - compile with: $ gss rps_cli.c
+      
 - rps_cli-01.c = source file for use in a linux based command line interface with basic GUI with ncurses
-    - compile with: $ gcc rps_cli-01.c -lncurses 
+    - compile with: $ gcc rps_cli-01.c -lncurses
+      
 - rps_gui.c = source file for a graphical user interface in linux using GTK3
     - compile with: $ gcc rps_gui.c -o main `pkg-config --cflags --libs gtk+-3.0`
 
