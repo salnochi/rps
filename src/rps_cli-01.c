@@ -5,33 +5,23 @@
 
 int main() {
 
-        int xMax, yMax;
-        int main_winY;
-        int main_winX;
-        int paneY;
-        int paneX;
-        int right_offset;
-        int left_offset;
-        int bottom_offset;
-        int bottomR_offset;
-        int userChoice;
+        int xMax, yMax; int main_winY; int main_winX; int paneY; int paneX; int right_offset; int left_offset; int bottom_offset; int bottomR_offset; int userChoice;
         FILE *fpt;
 
 //generate timestamp for log
-    time_t t ;                                                              //this sets up the time variables
+    time_t t ;                                                          //this sets up the time variables
     char MY_TIME[80];
     time_t rawtime;
     struct tm *info;
-    time(&rawtime);                                                     // Get current time
-    info = localtime(&rawtime);                                         // Convert to local time
+    time(&rawtime);
+    info = localtime(&rawtime);
     strftime(MY_TIME, sizeof(MY_TIME), "%m%d%Y, %H:%M:%S", info);       //this sets the output format of the time and date
     printf("%s", MY_TIME);
     srand(time(NULL));
 
 //log new game timestamp
     fpt = fopen("logs/rps.csv", "a");
-        fprintf(fpt, "\nNew GAME!!,");
-        fprintf(fpt, "%s", MY_TIME);
+        fprintf(fpt, "\nNew GAME!!,"); fprintf(fpt, "%s", MY_TIME);
     fclose(fpt);
 
 //this is to restart the game but not log a new session
@@ -47,37 +37,19 @@ int main() {
         refresh();
 
 //create the main window to the dimensions of the terminal window
-        WINDOW *main_win;
-        main_winY = yMax;
-        main_winX = xMax;
-        main_win = newwin(main_winY, main_winX, 0, 0);
-        box(main_win, 0, 0);
+        WINDOW *main_win; main_winY = yMax; main_winX = xMax; main_win = newwin(main_winY, main_winX, 0, 0); box(main_win, 0, 0);
         wrefresh(main_win);
 
 //create the right_pane window
-        WINDOW *right_pane;
-        paneY = yMax - 5;
-        paneX = xMax/2 - 2;
-        right_offset = xMax/2;
-        right_pane = newwin(paneY, paneX, 1, right_offset);
-        box(right_pane, 0, 0);
+        WINDOW *right_pane; paneY = yMax - 5; paneX = xMax/2 - 2; right_offset = xMax/2;right_pane = newwin(paneY, paneX, 1, right_offset); box(right_pane, 0, 0);
         wrefresh(right_pane);
 
 //create the left_pane window
-        WINDOW *left_pane;
-        paneY = yMax - 5;
-        paneX = xMax/2 - 2;
-        left_offset = 2;
-        left_pane = newwin(paneY, paneX, 1, left_offset);
-        box(left_pane, 0, 0);
+        WINDOW *left_pane; paneY = yMax - 5; paneX = xMax/2 - 2; left_offset = 2; left_pane = newwin(paneY, paneX, 1, left_offset); box(left_pane, 0, 0);
         wrefresh(left_pane);
 
 //create the bottom_pane window
-        WINDOW *bottom_pane;
-        bottom_offset = yMax - 1 - 3;
-        bottomR_offset = xMax -5;
-        bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-        box(bottom_pane, 0, 0);
+        WINDOW *bottom_pane; bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
         wrefresh(bottom_pane);
 
 //Main window title
@@ -85,7 +57,7 @@ int main() {
     wrefresh(main_win);
 
 //Right pane menu items
-    mvwprintw(right_pane, 1, 1, "Rules:");
+    mvwprintw(right_pane, 1, 2, "Rules:");
         mvwprintw(right_pane, 3, 2, "1. Rock Beats Scissors");
         mvwprintw(right_pane, 4, 2, "2. Paper Beats Rock");
         mvwprintw(right_pane, 5, 2, "3. Scissors Beats Paper");
@@ -93,7 +65,6 @@ int main() {
         mvwprintw(right_pane, 8, 5, "Enter 2 for Paper");
         mvwprintw(right_pane, 9, 5, "Enter 3 for Scissors");
         mvwprintw(right_pane, 11, 2, "Have Fun!");
-
     wrefresh(right_pane);
 
 //Bottom pane initial entry text
@@ -125,18 +96,13 @@ int compSelect = (rand() % 3) + 1; //randomly selects the computer's choice
 getch();
 
 if (userChoice == '1' && compSelect == 1){
-                    wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
+                wclear(bottom_pane);
+                    bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
                     wrefresh(bottom_pane);
                 mvwprintw(bottom_pane, 1, 2, "It's a tie!");
 
             fpt = fopen("logs/rps.csv", "a");
-            fprintf(fpt, "\nIt's a tie!");
-            fprintf(fpt, ",1");
-            fprintf(fpt, ",%d", compSelect);
+                fprintf(fpt, "\nIt's a tie!"); fprintf(fpt, ",1"); fprintf(fpt, ",%d", compSelect);
             fclose(fpt);
 
                 wrefresh(bottom_pane);
@@ -144,18 +110,13 @@ if (userChoice == '1' && compSelect == 1){
 
             }
             else if (userChoice == '2' && compSelect == 2){
-                    wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
-                    wrefresh(bottom_pane);
+                wclear(bottom_pane);
+                    bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
+                wrefresh(bottom_pane);
                 mvwprintw(bottom_pane, 1, 2, "It's a tie!");
 
             fpt = fopen("logs/rps.csv", "a");
-            fprintf(fpt, "\nIt's a tie!");
-            fprintf(fpt, ",2");
-            fprintf(fpt, ",%d", compSelect);
+                fprintf(fpt, "\nIt's a tie!"); fprintf(fpt, ",2"); fprintf(fpt, ",%d", compSelect);
             fclose(fpt);
 
                 wrefresh(bottom_pane);
@@ -163,18 +124,13 @@ if (userChoice == '1' && compSelect == 1){
 
             }
             else if (userChoice == '3' && compSelect == 3){
-                    wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
-                    wrefresh(bottom_pane);
+                wclear(bottom_pane);
+                    bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
+                wrefresh(bottom_pane);
                 mvwprintw(bottom_pane, 1, 2, "It's a tie!");
 
             fpt = fopen("logs/rps.csv", "a");
-            fprintf(fpt, "\nIt's a tie!");
-            fprintf(fpt, ",3");
-            fprintf(fpt, ",%d", compSelect);
+                fprintf(fpt, "\nIt's a tie!"); fprintf(fpt, ",3"); fprintf(fpt, ",%d", compSelect);
             fclose(fpt);
 
                 wrefresh(bottom_pane);
@@ -182,18 +138,13 @@ if (userChoice == '1' && compSelect == 1){
 
             }
             else if (userChoice == '1' && compSelect == 3){
-                    wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
-                    wrefresh(bottom_pane);
+                wclear(bottom_pane);
+                    bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
+                wrefresh(bottom_pane);
                 mvwprintw(bottom_pane, 1, 2, "You Win!");
 
             fpt = fopen("logs/rps.csv", "a");
-            fprintf(fpt, "\nYou win!");
-            fprintf(fpt, ",1");
-            fprintf(fpt, ",%d", compSelect);
+                fprintf(fpt, "\nYou win!"); fprintf(fpt, ",1"); fprintf(fpt, ",%d", compSelect);
             fclose(fpt);
 
                 wrefresh(bottom_pane);
@@ -201,36 +152,26 @@ if (userChoice == '1' && compSelect == 1){
 
             }
             else if (userChoice == '2' && compSelect == 1){
-                    wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
-                    wrefresh(bottom_pane);
+                wclear(bottom_pane);
+                    bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
+                wrefresh(bottom_pane);
                 mvwprintw(bottom_pane, 1, 2, "You Win!");
 
             fpt = fopen("logs/rps.csv", "a");
-            fprintf(fpt, "\nYou win!");
-            fprintf(fpt, ",2");
-            fprintf(fpt, ",%d", compSelect);
+                fprintf(fpt, "\nYou win!"); fprintf(fpt, ",2"); fprintf(fpt, ",%d", compSelect);
             fclose(fpt);
 
                 wrefresh(bottom_pane);
                 wrefresh(left_pane);
             }
             else if (userChoice == '3' && compSelect == 2){
-                    wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
-                    wrefresh(bottom_pane);
+                wclear(bottom_pane);
+                    bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
+                wrefresh(bottom_pane);
                 mvwprintw(bottom_pane, 1, 2, "You Win!");
 
             fpt = fopen("logs/rps.csv", "a");
-            fprintf(fpt, "\nYou win!");
-            fprintf(fpt, ",3");
-            fprintf(fpt, ",%d", compSelect);
+                fprintf(fpt, "\nYou win!"); fprintf(fpt, ",3"); fprintf(fpt, ",%d", compSelect);
             fclose(fpt);
 
                 wrefresh(bottom_pane);
@@ -238,18 +179,13 @@ if (userChoice == '1' && compSelect == 1){
             }
 
             else if (userChoice == '3' && compSelect == 1){
-                    wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
-                    wrefresh(bottom_pane);
+                wclear(bottom_pane);
+                    bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
+                wrefresh(bottom_pane);
                 mvwprintw(bottom_pane, 1, 2, "You lose :(");
 
             fpt = fopen("logs/rps.csv", "a");
-            fprintf(fpt, "\nYou lose!");
-            fprintf(fpt, ",3");
-            fprintf(fpt, ",%d", compSelect);
+                fprintf(fpt, "\nYou lose!"); fprintf(fpt, ",3"); fprintf(fpt, ",%d", compSelect);
             fclose(fpt);
 
                 wrefresh(bottom_pane);
@@ -258,17 +194,12 @@ if (userChoice == '1' && compSelect == 1){
             }
             else if (userChoice == '1' && compSelect == 2){
                     wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
+                        bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
                     wrefresh(bottom_pane);
                     mvwprintw(bottom_pane, 1, 2, "You lose :(");
 
             fpt = fopen("logs/rps.csv", "a");
-            fprintf(fpt, "\nYou lose!");
-            fprintf(fpt, ",1");
-            fprintf(fpt, ",%d", compSelect);
+                fprintf(fpt, "\nYou lose!"); fprintf(fpt, ",1"); fprintf(fpt, ",%d", compSelect);
             fclose(fpt);
 
                 wrefresh(bottom_pane);
@@ -276,49 +207,35 @@ if (userChoice == '1' && compSelect == 1){
             }
             else if (userChoice == '2' && compSelect == 3){
                     wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
+                        bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
                     wrefresh(bottom_pane);
                     mvwprintw(bottom_pane, 1, 2, "You lose (");
 
             fpt = fopen("logs/rps.csv", "a");
-            fprintf(fpt, "\nYou lose!");
-            fprintf(fpt, ",2");
-            fprintf(fpt, ",%d", compSelect);
+                fprintf(fpt, "\nYou lose!"); fprintf(fpt, ",2"); fprintf(fpt, ",%d", compSelect);
             fclose(fpt);
 
                 wrefresh(bottom_pane);
                 wrefresh(left_pane);
             }
             else{
-                  wclear(bottom_pane);
-                    bottom_offset = yMax - 1 - 3;
-                    bottomR_offset = xMax -5;
-                    bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-                    box(bottom_pane, 0, 0);
-                    wrefresh(bottom_pane);
+                wclear(bottom_pane);
+                    bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
+                wrefresh(bottom_pane);
                 wattron(bottom_pane, A_STANDOUT);
                 mvwprintw(bottom_pane, 1, 2, "***Invalid Entry***");
                 wattroff(bottom_pane, A_STANDOUT);
-                wrefresh(bottom_pane);
-                wrefresh(left_pane);
-
-            }
+                wrefresh(bottom_pane); wrefresh(left_pane);
+}
 
 getch();
-wrefresh(main_win);
-    wclear(bottom_pane);
-        bottom_offset = yMax - 1 - 3;
-        bottomR_offset = xMax -5;
-        bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-        box(bottom_pane, 0, 0);
+
+    wrefresh(main_win);
+        wclear(bottom_pane);
+            bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
         wrefresh(bottom_pane);
-
-    mvwprintw(bottom_pane, 1, 2, "Play again? Y/N: ");
-    wrefresh(bottom_pane);
-
+        mvwprintw(bottom_pane, 1, 2, "Play again? Y/N: ");
+        wrefresh(bottom_pane);
 
 playAgain:
 int yesNo = wgetch(bottom_pane);
@@ -327,23 +244,18 @@ if (yesNo == 'y' || yesNo == 'Y') {
 }
 else if (yesNo == 'n' || yesNo == 'N'){
     fpt = fopen("logs/rps.csv", "a");
-    fprintf(fpt, "\nEnd GAME!!,");
-    fprintf(fpt, "%s", MY_TIME);
+        fprintf(fpt, "\nEnd GAME!!,"); fprintf(fpt, "%s", MY_TIME);
     fclose(fpt);
 
     endwin();
-    return 0;
+return 0;
 }
 else{
         wclear(bottom_pane);
-        bottom_offset = yMax - 1 - 3;
-        bottomR_offset = xMax -5;
-        bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2);
-        box(bottom_pane, 0, 0);
+            bottom_offset = yMax - 1 - 3; bottomR_offset = xMax -5; bottom_pane = newwin(3, bottomR_offset, bottom_offset, 2); box(bottom_pane, 0, 0);
         wrefresh(bottom_pane);
-    mvwprintw(bottom_pane, 1, 2, "Please enter one of the options Y/N: ");
-    wrefresh(bottom_pane);
-    goto playAgain;
+        mvwprintw(bottom_pane, 1, 2, "Please enter one of the options Y/N: ");
+        wrefresh(bottom_pane);
+        goto playAgain;
 }
-
 }
