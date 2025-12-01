@@ -31,3 +31,6 @@ CSV logs are placed in the "logs" folder to provide a single point for reference
 Two csv files are located in the logs folder that complement the version of the program that uses it.
 - rps.csv = used by both of the the command line interface versions
 - rps_gui.csv = used by the graphical used interface version
+
+<b>Troubleshooting</b>
+ - The most common problem when trying to run the programs are if the log files are not in the correct directory, this should not be a problem of you clone this direcctory.
